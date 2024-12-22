@@ -1,0 +1,39 @@
+@use "./fonts";
+
+// fonts
+$font_family_logo: "Logo";
+$font_family_jetbrains: "JetBrains";
+
+// colors
+$color_main: #818cf8;
+$color_secondary: #6366f1;
+$color_white: #eef2ff;
+$color_gray: #9ca3af;
+$color_foreground: #111827;
+$color_background: #030712;
+
+// text
+$text_sm: 0.95rem;
+$text_normal: 1.1rem;
+$text_large: 2rem;
+$text_xl: 2.5rem;
+$text_xxl: 3rem;
+
+// padding
+$p_xs: 0.25rem;
+$p_sm: 0.5rem;
+$p_md: 1rem;
+$p_lg: 2rem;
+$p_xl: 2.5rem;
+
+// margin
+$m_xs: 0.25rem;
+$m_sm: 0.5rem;
+$m_md: 1rem;
+$m_lg: 2rem;
+$m_xl: 2.5rem;
+
+// border-radius
+$border_r_sm: 0.25rem;
+$border_r_md: 0.5rem;
+$border_r_circle: 50%;

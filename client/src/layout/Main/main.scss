@@ -1,0 +1,7 @@
+@use "../../styles/constants" as c;
+
+.hero {
+  padding: c.$p_md;
+  height: 100%;
+  width: inherit;
+}

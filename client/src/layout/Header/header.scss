@@ -1,0 +1,7 @@
+@use "../../styles/constants" as c;
+
+header {
+  padding: c.$p_md;
+  height: fit-content;
+  border-bottom: 1px solid c.$color_foreground;
+}

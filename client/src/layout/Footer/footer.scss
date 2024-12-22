@@ -1,0 +1,9 @@
+@use "../../styles/constants" as c;
+
+footer {
+  padding: c.$p_md;
+  border-top: 1px solid c.$color_foreground;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

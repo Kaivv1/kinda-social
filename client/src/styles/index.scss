@@ -1,0 +1,26 @@
+@use "constants" as c;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 86%;
+}
+
+body {
+  font-family: c.$font_family_jetbrains;
+  background-color: c.$color_background;
+  color: c.$color_white;
+  width: 100%;
+  height: 100%;
+}
+
+.layout {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: auto;
+  width: inherit;
+  min-height: 100vh;
+}

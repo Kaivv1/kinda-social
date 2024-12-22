@@ -1,0 +1,84 @@
+@use "../../styles/constants" as c;
+@use "sass:map";
+
+$variants: (
+  "default": null,
+  "withIcon": (
+    display: flex,
+    justify-content: center,
+    align-items: center,
+    gap: 0.2rem,
+  ),
+);
+
+@mixin applyVariant($variant) {
+  @if map.has-key($variants, $variant) {
+    @each $key, $value in map.get($variants, $variant) {
+      #{$key}: #{$value};
+    }
+  } @else {
+    @warn "Variant #{$variant} is not defined in $variants";
+  }
+}
+
+.button {
+  padding: 0.7rem c.$p_md;
+  border-radius: c.$border_r_sm;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+  background-color: c.$color_main;
+  font-size: c.$text_normal;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: c.$color_background;
+  &:hover {
+    cursor: pointer;
+    background-color: c.$color_secondary;
+  }
+
+  .btnIcon {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  @each $variant in map.keys($variants) {
+    &[data-variant="#{$variant}"] {
+      @include applyVariant($variant);
+    }
+  }
+
+  // &:active {
+  //   animation: clicked 0.2s ease-in-out;
+  // }
+}
+
+// @keyframes clicked {
+//   10% {
+//     transform: scale(1);
+//   }
+//   20% {
+//     transform: scale(0.99);
+//   }
+//   30% {
+//     transform: scale(0.98);
+//   }
+//   40% {
+//     transform: scale(0.97);
+//   }
+//   50% {
+//     transform: scale(0.96);
+//   }
+//   60% {
+//     transform: scale(0.97);
+//   }
+//   80% {
+//     transform: scale(0.98);
+//   }
+//   90% {
+//     transform: scale(0.99);
+//   }
+//   100% {
+//     transform: scale(1);
+//   }
+// }
