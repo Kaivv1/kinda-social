@@ -9,6 +9,9 @@ $variants: (
     align-items: center,
     gap: 0.2rem,
   ),
+  "green": (
+    background-color: c.$color_green,
+  ),
 );
 
 @mixin applyVariant($variant) {
@@ -22,13 +25,14 @@ $variants: (
 }
 
 .button {
-  padding: 0.7rem c.$p_md;
+  padding: 0.7rem;
+  width: fit-content;
+  height: 2.6rem;
   border-radius: c.$border_r_sm;
   border: none;
-  transition: all 0.3s ease-in-out;
-  display: inline-block;
+  transition: background-color 0.15s ease-in-out;
   background-color: c.$color_main;
-  font-size: c.$text_normal;
+  font-size: c.$text_sm;
   text-transform: uppercase;
   font-weight: 600;
   color: c.$color_background;
@@ -38,8 +42,8 @@ $variants: (
   }
 
   .btnIcon {
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 1.3em;
+    height: 1.3em;
   }
 
   @each $variant in map.keys($variants) {

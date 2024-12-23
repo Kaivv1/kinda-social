@@ -11,7 +11,7 @@ export default function LandingPage() {
         Share your daily adventures and chat with your friends.
       </p>
       <Button variant="withIcon" icon={SendIcon}>
-        Click
+        Sign In
       </Button>
     </div>
   );
