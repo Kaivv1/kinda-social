@@ -6,13 +6,16 @@ $font_family_jetbrains: "JetBrains";
 
 // colors
 $color_main: #818cf8;
-$color_secondary: #6366f1;
-$color_white: #eef2ff;
+$color_main--hover: #6366f1;
+$color_secondary: #f8b481;
+$color_white: #f4f4f5;
 $color_gray: #9ca3af;
-$color_foreground: #111827;
-$color_background: #030712;
+$color_foreground: #27272a;
+$color_background: #09090b;
 $color_green: #22c55e;
 $color_green--hover: #16a34a;
+$color_red: #dc2626;
+$color_red--hover: #b91c1c;
 
 // text
 $text_sm: 0.95rem;

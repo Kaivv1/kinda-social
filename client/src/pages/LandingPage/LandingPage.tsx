@@ -1,5 +1,4 @@
-import { SendIcon } from "lucide-react";
-import Button from "../../components/Button/Button";
+import Input from "../../components/ui/Input/Input";
 import "./landing_page.scss";
 
 export default function LandingPage() {
@@ -10,9 +9,15 @@ export default function LandingPage() {
         This is an application where you can find other people to connect with.
         Share your daily adventures and chat with your friends.
       </p>
-      <Button variant="withIcon" icon={SendIcon}>
-        Sign In
-      </Button>
+      <form action="">
+        <Input
+          label="Username"
+          id="username"
+          placeholder="Enter username"
+          error="this is an error"
+          type="file"
+        />
+      </form>
     </div>
   );
 }
