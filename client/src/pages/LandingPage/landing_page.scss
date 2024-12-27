@@ -1,4 +1,4 @@
-@use "../../styles/constants";
+@use "../../styles/constants" as c;
 
 .landing-page-container {
   display: flex;
@@ -6,8 +6,4 @@
   flex-direction: column;
   align-items: center;
   height: inherit;
-
-  form {
-    width: 100rem;
-  }
 }

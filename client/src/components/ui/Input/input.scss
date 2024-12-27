@@ -5,13 +5,15 @@
   flex-direction: column;
   gap: 0.2rem;
   width: 100%;
-  max-width: 24rem;
   position: relative;
   .input-label-error {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: c.$text_sm;
+    label {
+      text-transform: capitalize;
+    }
     .input-err {
       color: c.$color_red--hover;
     }

@@ -25,3 +25,13 @@ body {
   width: inherit;
   min-height: 100vh;
 }
+
+form {
+  width: 100%;
+  .input-wrapper {
+    margin-bottom: 0.6rem;
+    &:last-of-type {
+      margin-bottom: 0rem;
+    }
+  }
+}

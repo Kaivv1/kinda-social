@@ -2,7 +2,7 @@ import { LucideIcon } from "lucide-react";
 import "./button.scss";
 import { ComponentPropsWithoutRef, ReactNode } from "react";
 
-type ButtonProps = {
+export type ButtonProps = {
   variant?: "default" | "withIcon" | "green" | "red" | "outlined" | "icon";
   children?: ReactNode;
   icon?: LucideIcon;
