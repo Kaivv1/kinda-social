@@ -1,9 +1,13 @@
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { Dialog } from "../../components/ui/Dialog/DialogContext";
 import Input from "../../components/ui/Input/Input";
 import "./landing_page.scss";
 
 export default function LandingPage() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen((prev) => !prev);
+
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
   }
@@ -15,7 +19,9 @@ export default function LandingPage() {
         Share your daily adventures and chat with your friends.
       </p>
       <Dialog>
-        <Dialog.Trigger>Trigger</Dialog.Trigger>
+        <Dialog.Trigger open={isOpen} onClick={toggle}>
+          Trigger
+        </Dialog.Trigger>
         <Dialog.Content>
           <Dialog.Header
             title="Login"
@@ -27,7 +33,7 @@ export default function LandingPage() {
             <Input label="password" />
             <Dialog.Footer>
               <Dialog.Button>Login</Dialog.Button>
-              <Dialog.Close />
+              <Dialog.Close onClick={toggle} />
             </Dialog.Footer>
           </form>
         </Dialog.Content>

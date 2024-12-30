@@ -11,7 +11,17 @@ dialog {
   backdrop-filter: blur(2px) brightness(20%);
 
   &:not([open]) {
-    display: none;
+    visibility: hidden;
+    transition: all 0.1s ease-in-out;
+  }
+
+  &[open] {
+    visibility: visible;
+    transition: all 0.1s ease-in-out;
+    .dialog-wrapper {
+      transform: scale(1);
+      transition: all 0.1s ease-in-out;
+    }
   }
 
   .dialog-wrapper {
@@ -24,6 +34,8 @@ dialog {
     border-radius: c.$border_r_sm;
     box-shadow: c.$shadow;
     border: 1px solid c.$color_main;
+    transform: scale(0);
+    transition: all 0.1s ease-in-out;
 
     .dialog-header {
       display: flex;

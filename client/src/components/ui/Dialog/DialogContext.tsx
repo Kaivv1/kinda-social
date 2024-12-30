@@ -1,4 +1,11 @@
-import { createContext, ReactNode, useContext, useEffect, useRef } from "react";
+import {
+  ComponentPropsWithoutRef,
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import "./dialog.scss";
 import Button, { ButtonProps } from "../Button/Button";
 
@@ -6,30 +13,29 @@ type DialogContextProps = {
   children: ReactNode;
 };
 
-type DialogInitialState = {
-  close: () => void;
-  open: () => void;
-  dialogRef: React.MutableRefObject<HTMLDialogElement | null>;
-};
-
-const DialogContext = createContext<DialogInitialState | undefined>(undefined);
+const DialogContext = createContext<
+  | {
+      isOpen: boolean;
+      getParentOpen: (open: boolean) => void;
+    }
+  | undefined
+>(undefined);
 
 function DialogProvider({ children }: DialogContextProps) {
-  const dialogRef = useRef<HTMLDialogElement | null>(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  useEffect(() => {});
+  const getParentOpen = (open: boolean) => setIsOpen(open);
 
-  function open() {
-    console.log("Modal opened");
-    dialogRef.current?.showModal();
-  }
-  function close() {
-    console.log("Modal closed");
-    dialogRef.current?.close();
-  }
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [isOpen]);
 
   return (
-    <DialogContext.Provider value={{ close, open, dialogRef }}>
+    <DialogContext.Provider value={{ isOpen, getParentOpen }}>
       {children}
     </DialogContext.Provider>
   );
@@ -47,22 +53,28 @@ function Dialog({ children }: { children: ReactNode }) {
 }
 
 function DialogTrigger({
+  open,
   children,
   variant = "default",
   ...props
-}: ButtonProps) {
-  const { open } = useDialogContext();
+}: ButtonProps & { open: boolean }) {
+  const { getParentOpen } = useDialogContext();
+
+  useEffect(() => {
+    getParentOpen(open);
+  }, [open, getParentOpen]);
+
   return (
-    <Button onClick={() => open()} variant={variant} {...props}>
+    <Button variant={variant} {...props}>
       {children}
     </Button>
   );
 }
 
 function DialogContent({ children }: { children: ReactNode }) {
-  const { dialogRef } = useDialogContext();
+  const { isOpen } = useDialogContext();
   return (
-    <dialog ref={dialogRef}>
+    <dialog open={isOpen}>
       <div className="dialog-wrapper">{children}</div>
     </dialog>
   );
@@ -90,11 +102,9 @@ function DialogFooter({ children }: { children: ReactNode }) {
 function DialogButton({ children, ...props }: ButtonProps) {
   return <Button {...props}>{children}</Button>;
 }
-function DialogClose() {
-  const { close } = useDialogContext();
-
+function DialogClose({ ...props }: ComponentPropsWithoutRef<"button">) {
   return (
-    <Button variant="outlined" onClick={() => close()}>
+    <Button variant="outlined" {...props}>
       Close
     </Button>
   );
