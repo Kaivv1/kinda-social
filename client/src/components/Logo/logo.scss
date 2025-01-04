@@ -1,0 +1,10 @@
+@use "../../styles/constants" as c;
+
+.logo {
+  font-family: c.$font_family_logo;
+  font-size: c.$text_xl;
+  span {
+    font-family: c.$font_family_logo;
+    color: c.$color_main;
+  }
+}

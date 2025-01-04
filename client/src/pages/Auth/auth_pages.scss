@@ -1,0 +1,18 @@
+@use "../../styles/constants" as c;
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: inherit;
+  gap: 1.5rem;
+  form {
+    max-width: 30rem;
+  }
+}
+
+.login-container {
+  @extend .register-container;
+}

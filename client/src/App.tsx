@@ -2,16 +2,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./layout/Layout";
 import Home from "./pages/Home/Home";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
-import LandingPage from "./pages/LandingPage/LandingPage";
+import Register from "./pages/Auth/Register";
+import Login from "./pages/Auth/Login";
 
 const router = createBrowserRouter([
   {
     element: <Layout />,
-    children: [
-      { index: true, element: <LandingPage /> },
-      { path: "app", element: <Home />, children: [] },
-    ],
+    children: [{ element: <Home />, index: true }],
   },
+  { element: <Register />, path: "register" },
+  { element: <Login />, path: "login" },
   { path: "*", element: <PageNotFound /> },
 ]);
 

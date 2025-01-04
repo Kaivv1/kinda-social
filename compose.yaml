@@ -1,0 +1,48 @@
+name: kinda-social
+
+services:
+  client: 
+    build: 
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/app
+    env_file:
+      - ./client/.env
+    depends_on:
+      - server
+    networks:
+      - kinda-social-network
+  server:
+    build: 
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./server:/app
+    env_file:
+      - ./server/.env
+    depends_on:
+      - db
+    networks:
+      - kinda-social-network
+  db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - pg-kinda-social:/var/lib/postgresql/data
+    networks:
+      - kinda-social-network
+
+
+networks:
+  kinda-social-network:
+
+volumes:
+  pg-kinda-social:

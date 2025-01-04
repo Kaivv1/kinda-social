@@ -9,6 +9,7 @@ dialog {
   align-items: center;
   background: transparent;
   backdrop-filter: blur(2px) brightness(20%);
+  z-index: 100;
 
   &:not([open]) {
     visibility: hidden;

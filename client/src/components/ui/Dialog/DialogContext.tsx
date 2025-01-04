@@ -102,6 +102,7 @@ function DialogFooter({ children }: { children: ReactNode }) {
 function DialogButton({ children, ...props }: ButtonProps) {
   return <Button {...props}>{children}</Button>;
 }
+
 function DialogClose({ ...props }: ComponentPropsWithoutRef<"button">) {
   return (
     <Button variant="outlined" {...props}>

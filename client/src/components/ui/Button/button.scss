@@ -6,7 +6,6 @@ $variants: (
   "withIcon": (
     display: flex,
     justify-content: center,
-    align-items: center,
     gap: 0.2rem,
   ),
   "green": (
@@ -82,7 +81,7 @@ $variants_hover: (
   height: 2.6rem;
   border-radius: c.$border_r_sm;
   border: none;
-  transition: all 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out;
   background-color: c.$color_main;
   font-size: c.$text_sm;
   font-weight: 600;
@@ -96,6 +95,10 @@ $variants_hover: (
     width: 1.3rem;
     height: 1.3rem;
   }
+  &:focus {
+    outline: 2px solid c.$color_main;
+    outline-offset: 1px;
+  }
 
   @each $variant in map.keys($variants) {
     &[data-variant="#{$variant}"] {
@@ -106,6 +109,22 @@ $variants_hover: (
           height: 1.4rem;
         }
       }
+      @if $variant == "green" {
+        &:focus {
+          outline-color: c.$color_green;
+        }
+      }
+      @if $variant == "red" {
+        &:focus {
+          outline-color: c.$color_red;
+        }
+      }
+      @if $variant == "outlined" {
+        &:focus {
+          outline-color: c.$color_white;
+        }
+      }
+
       &:hover {
         @include applyVariant(true, $variant);
       }

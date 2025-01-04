@@ -29,9 +29,15 @@ body {
 form {
   width: 100%;
   .input-wrapper {
-    margin-bottom: 0.6rem;
+    margin-bottom: c.$m_sm;
     &:last-of-type {
       margin-bottom: 0rem;
+    }
+  }
+
+  @if (&: has(button)) {
+    button {
+      margin-top: c.$m_md;
     }
   }
 }

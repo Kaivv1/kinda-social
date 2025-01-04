@@ -18,6 +18,32 @@
       color: c.$color_red--hover;
     }
   }
+  .radio-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    align-items: center;
+    justify-content: space-between;
+    height: 2.5rem;
+
+    div {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+
+      label {
+        text-transform: capitalize;
+      }
+      input[type="radio"] {
+        appearance: none;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        &:checked {
+          background-color: c.$color_main;
+        }
+      }
+    }
+  }
   input {
     border: none;
     padding: 0.4rem;
@@ -31,7 +57,14 @@
       outline: 2px solid c.$color_main;
       outline-offset: 1px;
     }
-
+    &.invalid-input {
+      outline: 2px solid c.$color_red--hover;
+      outline-offset: 1px;
+      &:focus {
+        outline: 2px solid c.$color_main;
+        outline-offset: 1px;
+      }
+    }
     &[type="file"] {
       &::-webkit-file-upload-button {
         transition: all 0.15s ease-in-out;
