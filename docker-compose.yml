@@ -6,7 +6,7 @@ services:
       context: ./client
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - 3000:3000
     volumes:
       - ./client:/app
     env_file:
@@ -20,7 +20,7 @@ services:
       context: ./server
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - 8080:8080
     volumes:
       - ./server:/app
     env_file:
@@ -29,10 +29,12 @@ services:
       - db
     networks:
       - kinda-social-network
+    restart: always
+      
   db:
     image: postgres:latest
     ports:
-      - "5432:5432"
+      - 5432:5432
     env_file:
       - .env
     volumes:
@@ -40,9 +42,9 @@ services:
     networks:
       - kinda-social-network
 
-
 networks:
   kinda-social-network:
+    driver: bridge
 
 volumes:
   pg-kinda-social:
