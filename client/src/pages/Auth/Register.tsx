@@ -6,15 +6,23 @@ import Button from "../../components/ui/Button/Button";
 import Input from "../../components/ui/Input/Input";
 import LabelError from "../../components/ui/Input/LabelError";
 import "./auth_pages.scss";
+import { useRegister } from "../../hooks/useRegister";
+import { getErrorData } from "../../error";
+import Loader from "../../components/Loader/Loader";
+import { useNavigate } from "react-router-dom";
+import AuthNav from "../../components/AuthNav";
 
 export default function Register() {
   const [errors, setErrors] = useState<RegisterErrors>({
     username: "",
     email: "",
     password: "",
+    birthday: "",
     confirmPassword: "",
   });
   const formRef = useRef<HTMLFormElement>(null);
+  const { register, isLoading } = useRegister();
+  const navigate = useNavigate();
 
   function validate(data: FormData): boolean {
     let validateErrors = [];
@@ -39,7 +47,9 @@ export default function Register() {
     return validateErrors.length === 0;
   }
 
-  function reset(key: "username" | "email" | "password" | "confirmPassword") {
+  function reset(
+    key: "username" | "email" | "password" | "birthday" | "confirmPassword"
+  ) {
     setErrors((prev) => ({ ...prev, [key]: "" }));
   }
 
@@ -50,7 +60,31 @@ export default function Register() {
     const data = new FormData(formRef.current);
 
     if (!validate(data)) return;
-    console.log("it got through");
+    const args: RegisterArgs = {
+      username: data.get("username")?.toString()!,
+      email: data.get("email")?.toString()!,
+      password: data.get("password")?.toString()!,
+      gender: data.get("gender")?.toString()!,
+      birthday: new Date(data.get("birthday")?.toString()!).toISOString(),
+    };
+    register(args, {
+      onSuccess: () => navigate("/login"),
+      onError: (err) => {
+        const apiErr = getErrorData(err);
+        if (apiErr.msg) {
+          const key =
+            apiErr.msg.split(" ").find((val) => val === "username") ||
+            apiErr.msg.split(" ").find((val) => val === "email");
+          setErrors((prev) => ({
+            ...prev,
+            [key!]: `${apiErr.msg?.charAt(0).toUpperCase()}${apiErr.msg?.slice(
+              1,
+              apiErr.msg.length
+            )}`,
+          }));
+        }
+      },
+    });
   }
 
   return (
@@ -92,6 +126,17 @@ export default function Register() {
           ))}
         </LabelError>
         <Input
+          label="birthday"
+          name="birthday"
+          id="birthday"
+          type="date"
+          error={errors["birthday"]}
+          onClick={(e) => e.currentTarget.showPicker()}
+          onChange={(e) => {
+            if (e.type) reset("birthday");
+          }}
+        />
+        <Input
           label="password"
           name="password"
           id="password"
@@ -111,7 +156,10 @@ export default function Register() {
             if (e.type) reset("confirmPassword");
           }}
         />
-        <Button style={{ width: "100%" }}>Register</Button>
+        <Button style={{ width: "100%" }}>
+          {isLoading ? <Loader /> : "Register"}
+        </Button>
+        <AuthNav page="register" />
       </form>
     </div>
   );

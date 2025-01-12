@@ -83,6 +83,19 @@
         }
       }
     }
+    &[type="date"] {
+      &::-webkit-calendar-picker-indicator {
+        filter: invert(0.8);
+        width: 1.4rem;
+        height: 1.4rem;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 
   .pass-input {

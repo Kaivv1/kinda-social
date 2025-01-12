@@ -40,4 +40,26 @@ form {
       margin-top: c.$m_md;
     }
   }
+  @if (&: has(".auth-nav")) {
+    .auth-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1rem;
+      gap: 0.3rem;
+      a {
+        color: c.$color_main;
+        &:visited {
+          color: c.$color_main;
+        }
+        &:hover {
+          color: c.$color_main--hover;
+        }
+      }
+    }
+  }
+}
+
+.toasts {
+  min-height: 3.5rem;
 }

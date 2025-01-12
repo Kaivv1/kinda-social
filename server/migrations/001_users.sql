@@ -1,0 +1,14 @@
+-- Up Migration
+CREATE TABLE users (
+  id UUID PRIMARY KEY,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  username TEXT UNIQUE NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  PASSWORD VARCHAR(200) NOT NULL,
+  gender TEXT NOT NULL,
+  birthday TIMESTAMP NOT NULL
+);
+
+-- Down Migration
+DROP TABLE users;

@@ -40,6 +40,7 @@ function DialogProvider({ children }: DialogContextProps) {
     </DialogContext.Provider>
   );
 }
+
 function useDialogContext() {
   const context = useContext(DialogContext);
   if (!context) {
